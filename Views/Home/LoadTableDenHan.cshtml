@@ -1,0 +1,38 @@
+﻿@model List<QuanLyThongTinBenBaiCho.Models.BenVM>
+@{
+    Layout = null;
+    int index = 1;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th> STT </th>
+            <th> Tên </th>
+            <th> Loại </th>
+            <th> Địa chỉ </th>
+            <th> Ngày đấu giá </th>
+            <th> Ngày bắt đầu </th>
+            <th> Ngày kết thúc </th>
+            <th> Số tiền đấu giá (triệu đồng)</th>
+            <th> Tên đơn vị sử dụng </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.Ten</td>
+                <td>@item.Loai</td>
+                <td>@item.DiaChi</td>
+                <td>@item.NgayDauGia.ToShortDateString()</td>
+                <td>@item.NgayBatDau.ToShortDateString()</td>
+                <td>@item.NgayKetThuc.ToShortDateString()</td>
+                <td>@item.SoTienDauGia</td>
+                <td>@item.TenDonViSuDung</td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+

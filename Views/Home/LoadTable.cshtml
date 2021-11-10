@@ -1,0 +1,46 @@
+﻿@model List<QuanLyThongTinBenBaiCho.Models.Ben>
+@{
+    Layout = null;
+    int index = 1;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th> Tên </th>
+            <th> Loại </th>
+            <th> Địa chỉ </th>
+            <th> Mô tả </th>
+            <th> Giá trị (triệu đồng)</th>
+            <th> Tên đơn vị chủ quản </th>
+            <th style="width:200px; min-width:100px;"> &nbsp; </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.Ten</td>
+                <td>@item.Loai</td>
+                <td>@item.DiaChi</td>
+                <td>@item.MoTa</td>
+                <td>@item.GiaTri</td>
+                <td>@item.ChuQuan</td>
+                <td class="align-middle text-right">
+                    @{
+                        var uEdit = Url.Action("AddOrUpdate", "Home") + "/" + item.BenId;
+                        var urlEdit = @"Popup('" + uEdit + "')";
+                        var uDelete = Url.Action("Delete", "Home") + "/" + item.BenId;
+                        var urluDelete = @"Delete('" + uDelete + "')";
+
+                        index++;
+                    }
+                    <a href="/LichSu/Index/@item.BenId" class="btn btn-sm btn-icon btn-secondary"><i class="fas fa-history"></i> <span class="sr-only">Sửa</span></a>
+                    <a href="#" onclick="@urlEdit" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Sửa</span></a>
+                    <a href="#" onclick="@urluDelete" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Xóa</span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

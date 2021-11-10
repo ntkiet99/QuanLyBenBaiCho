@@ -1,0 +1,43 @@
+﻿@model List<QuanLyThongTinBenBaiCho.Models.LichSu>
+@{
+    Layout = null;
+    int index = 1;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th> Ngày đấu giá </th>
+            <th> Giá trị (triệu đồng)</th>
+            <th> Ngày bắt đầu </th>
+            <th> Ngày kết thúc </th>
+            <th> Tên đơn vị sử dụng </th>
+            <th style="width:200px; min-width:100px;"> &nbsp; </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@index</td>
+                <td>@item.NgayDauGia.ToShortDateString()</td>
+                <td>@item.GiaTri</td>
+                <td>@item.NgayBatDau.ToShortDateString()</td>
+                <td>@item.NgayKetThuc.ToShortDateString()</td>
+                <td>@item.TenDonVi</td>
+                <td class="align-middle text-right">
+                    @{
+                        var uEdit = Url.Action("AddOrUpdate", "LichSu") + "/" + item.LichSuId;
+                        var urlEdit = @"Popup('" + uEdit + "')";
+                        var uDelete = Url.Action("Delete", "LichSu") + "/" + item.LichSuId;
+                        var urluDelete = @"Delete('" + uDelete + "')";
+
+                        index++;
+                    }
+                    <a href="#" onclick="@urlEdit" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Sửa</span></a>
+                    <a href="#" onclick="@urluDelete" class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Xóa</span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
